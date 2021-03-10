@@ -1,6 +1,8 @@
 from django.http import HttpResponse
-
+from django.shortcuts import render
 
 def index(request):
-    res = "<h1>Hello World!"
-    return HttpResponse(res)
+    return render(request, 'home.html', {})
+
+def contacts(request):
+    return render(request, 'contacts.html', {})
