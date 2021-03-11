@@ -1,8 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from .models import Quiz
+
 def index(request):
-    return render(request, 'home.html', {})
+    obj = Quiz.objects.get(id=2)
+    context = {
+        'Obj' : obj
+    }
+    return render(request, 'home.html', context)
 
 def contacts(request):
     my_contactes = {
