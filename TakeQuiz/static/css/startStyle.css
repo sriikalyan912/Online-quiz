@@ -12,7 +12,7 @@
     
 }
 
-.button-field button{
+.button-field button, .button-field input[type='submit']{
     width: 100px;
     height: 50px;
     background-color: blueviolet;

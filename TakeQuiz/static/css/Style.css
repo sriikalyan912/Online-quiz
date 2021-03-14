@@ -22,7 +22,7 @@
 }
 
 
-.button-field button{
+.button-field button, .button-field input[type='submit']{
     width: 100px;
     height: 50px;
     background-color: rgb(192, 150, 231);
@@ -37,7 +37,13 @@
     font-size: larger;
 
 }
+.button-field input[type='submit']{
+    background-color: blueviolet;
+}
 
+.button-field input[type='submit']:hover{
+    background-color: rgb(100, 24, 172);
+}
 
 input[type = radio]{
     opacity: 0;
@@ -46,6 +52,14 @@ input[type = radio]{
     height: 40px;
 }
 
+#id_name{
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    
+    border-bottom: 1px solid black;
+    border-radius: 3px;
+}
 
 
 .option{

@@ -9,7 +9,7 @@ nextQuestion = () => {
 
     question_no +=1 ;
 
-    if(question_no >= 2){
+    if(question_no >= 10){
         var FinishButton = document.getElementById('Next-Finish');
         FinishButton.innerText = 'Finish';
         FinishButton.onclick = function(){ FinishTest() };
@@ -140,7 +140,7 @@ FinishTest = () =>{
                 <h3>Score        : ${result['score']}</h3>
             </li>
             <li>
-                <h3>Time Taken   : ${result['timetaken'][0]}mins : ${result['timetaken'][2]}sec </h3>
+                <h3>Time Taken   : ${result['timetaken']} mins:sec </h3>
             </li>
             <li>
                 <h3>Status       : ${status}</h3>
@@ -148,6 +148,12 @@ FinishTest = () =>{
             `
             document.getElementById('student_name').innerHTML = '';
             document.getElementById('Question').innerHTML = '';
+
+            var home = document.getElementById('Next-Finish')
+            home.innerHTML = 'Home';
+            home.onclick = function(){
+                BackToHome()
+            }
         };
     };
 
@@ -155,4 +161,8 @@ FinishTest = () =>{
     xhttp.open('GET', window.location.href+`finishtest/${student_name}/${score}&${timetaken}` , true);
     xhttp.send();
 
+}
+
+BackToHome = () => {
+    window.location.assign(`${window.location.protocol}//${window.location.hostname}:${window.location.port}`)
 }
