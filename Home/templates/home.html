@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <div class="inner-container">
+        
+        <div class="heading">
+            <h1>
+                School Quiz
+            </h1>
+        </div>
+        <div class="button-chooise">
+            <ul id="ul-buttons">
+                <li>
+                    <a href="{% url 'createquiz' %}">
+                        <button>
+                            Create Quiz
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'takequiz' %}">
+                        <button>
+                            Take Quiz
+                        </button>
+                    </a>
+                </li>
+            </ul>
+            
+        </div>
+
+    </div>
+
+{% endblock content %}

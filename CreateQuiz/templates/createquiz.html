@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'CQ_style.css' %}">
+<div class="inner-container">
+    <div class="Question-box">
+        <div class="heading">
+            <h1>Create Quiz</h1>
+        </div>
+        <form action="." method="POST"> {% csrf_token %}
+            {{ form.as_ul }}
+    
+            {% for i in range %}
+    
+                <div class="Questions">
+                    <div class="question">
+                        <h3>
+                            Question {{ i }}
+                        </h3>
+                        <input type="text" name="question" id="question_TextArea">
+                    </div>
+                    <div class="options">
+                        <ol type="A">
+                            <li>
+                                <input type="text" name="option_A" id="option_TextArea" >
+                            </li>
+                            <li>
+                                <input type="text" name="option_B" id="option_TextArea" >
+                            </li>
+                            <li>
+                                <input type="text" name="option_C" id="option_TextArea" >
+                            </li>
+                            <li>
+                                <input type="text" name="option_D" id="option_TextArea" >
+                            </li>
+                            <li style="list-style-type: none;">
+                                <label for="correct_option"> Correct Option</label>
+                                <select name="correct_option" required>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                
+            
+            {% endfor %}
+                
+            <div class="submit-button">
+                <input type="submit" value="Submit">
+            </div>
+            
+    
+        </form>
+    </div>
+</div>
+    
+
+
+{% endblock content %}

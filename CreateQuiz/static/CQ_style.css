@@ -1,0 +1,74 @@
+.inner-container{
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+}
+.Question-box{
+    margin-left: 20px;
+}
+
+.Questions{
+    margin: 50px 0px 50px 0px;
+}
+
+form > li{
+    list-style-type: none;
+}
+
+form > li > input[type = text]{
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    font-size: larger;
+}
+
+form > li > label{
+    font-size: larger;
+    
+    font-weight: 300;
+}
+
+.heading h1{
+    color: rgb(68, 51, 51);
+    text-align: center;
+    
+}
+
+
+#question_TextArea, #option_TextArea{
+    width: 90%;
+    border: none;
+    outline: none;
+    font-size: large;
+    border-bottom: 1px solid black;
+
+}
+
+li{
+    margin: 10px 10px 0px 10px;
+}
+
+.submit-button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+input[type = submit]{
+    width: 100px;
+    height: 50px;
+    background-color: blueviolet;
+
+    letter-spacing: 3px;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+
+    color: white;
+}
+
+select{
+    outline: none;
+    width: 50px;
+}

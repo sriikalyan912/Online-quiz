@@ -1,0 +1,17 @@
+.heading h1{
+    color: rgb(68, 51, 51);
+    text-align: center;
+    
+}
+
+.quizzes_list li a{
+    text-decoration: none;
+    font-style: italic;
+    color: black;
+}
+
+.inner-container{
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+}

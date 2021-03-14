@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'Style.css' %}">
+
+    <div class="heading">
+        <h1 id="quiz_name">
+            {{ quiz_name }}
+        </h1>
+    </div>
+
+    <div class="question_part">
+        <div class="question">
+            <h3 id="question">{{ question.Question_no }}  {{question.Question }}</h3>
+        </div>
+        <div class="options">
+            <ul>
+                <li id="option_A-Box">
+                    <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="A" id="option">
+                    <label for="A">A) {{ question.option_A }}</label>
+                </li>
+                <li id="option_B-Box">
+                    <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="B" id="option">
+                    <label for="A">B) {{ question.option_B }}</label>
+                </li>
+                <li id="option_C-Box">
+                    <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="C" id="option">
+                    <label for="A">C) {{ question.option_C }}</label>
+                </li>
+                <li id="option_D-Box">
+                    <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="D" id="option">
+                    <label for="A">D) {{ question.option_D }}</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="next-question">
+        <button id="next">
+            Next
+        </button>
+    </div>
+
+    <script src="{% static 'js/functions.js'%}"></script>
+
+{% endblock %}
