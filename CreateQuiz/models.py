@@ -2,6 +2,7 @@ from django.contrib.admin import options
 from django.db import models
 
 class Quiz(models.Model):
+    
     Quiz_name = models.CharField(max_length=10)
 
 

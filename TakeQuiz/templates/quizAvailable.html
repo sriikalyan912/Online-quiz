@@ -3,7 +3,7 @@
 {% block content %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'QA_style.css' %}">
+<link rel="stylesheet" href="{% static 'css/QA_style.css' %}">
     <div class="inner-container">
         <div class="heading">
             <h1>
@@ -14,7 +14,7 @@
             {% for quiz in quizzes %}
                 
                 <h2>
-                    <li><a href="{{ quiz.Quiz_name }}/1"> {{ quiz.Quiz_name }} </a></li>
+                    <li><a href="{{ quiz.Quiz_name }}"> {{ quiz.Quiz_name }} </a></li>
                 </h2>
         
             {% endfor %}

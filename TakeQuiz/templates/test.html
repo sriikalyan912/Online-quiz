@@ -3,46 +3,62 @@
 {% block content %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'Style.css' %}">
+<link rel="stylesheet" href="{% static 'css/Style.css' %}">
 
-    <div class="heading">
-        <h1 id="quiz_name">
-            {{ quiz_name }}
-        </h1>
-    </div>
-
-    <div class="question_part">
-        <div class="question">
-            <h3 id="question">{{ question.Question_no }}  {{question.Question }}</h3>
+    <div class="inner-container">
+        <div class="heading-field">
+            <h1 id="quiz_name"> {{ quiz_name }} </h1>
+            <h2 id="student_name">{{ student_name }}</h2>
         </div>
-        <div class="options">
-            <ul>
-                <li id="option_A-Box">
-                    <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="A" id="option">
-                    <label for="A">A) {{ question.option_A }}</label>
-                </li>
-                <li id="option_B-Box">
-                    <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="B" id="option">
-                    <label for="A">B) {{ question.option_B }}</label>
-                </li>
-                <li id="option_C-Box">
-                    <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="C" id="option">
-                    <label for="A">C) {{ question.option_C }}</label>
-                </li>
-                <li id="option_D-Box">
-                    <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="D" id="option">
-                    <label for="A">D) {{ question.option_D }}</label>
-                </li>
-            </ul>
+
+        <div class="question-field">
+            <div class="question">
+                <h2 id="Question">{{ question.Question_no }}. {{ question.Question }}</h2>
+            </div>
+            <div class="options">
+                <ul id="reseter">
+                    <li>
+                        <div class="option" id="option_A-Box">
+                            <h3>
+                                <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="A" id="Option_A">A) {{ question.option_A }}
+                            </h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="option" id="option_B-Box">
+                            <h3>
+                                <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="B" id="Option_B">B) {{ question.option_B }}
+                            </h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="option" id="option_C-Box">
+                            <h3>
+                                <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="C" id="Option_C">C) {{ question.option_C }}
+                            </h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="option" id="option_D-Box">
+                            <h3>
+                                <input type="radio" name="{{ question.Question_no }}" onchange="myfunction()" value="D" id="Option_D">D) {{ question.option_D }}
+                            </h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+        <div class="button-field">
+            <div class="next-button">
+                <button onclick="nextQuestion()" id="Next-Finish" disabled>Next</button>
+            </div>
+        </div>
+
     </div>
 
-    <div class="next-question">
-        <button id="next">
-            Next
-        </button>
-    </div>
-
+    
+    {% load static %}
     <script src="{% static 'js/functions.js'%}"></script>
 
 {% endblock %}

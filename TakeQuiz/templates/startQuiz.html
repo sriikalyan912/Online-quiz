@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/Style.css' %}">
+
+<div class="inner-container">
+    <form action="test/" method="post">{% csrf_token %}
+        <div class="heading-field">
+            <h1 id="quiz_name">{{ quiz_name }}</h1>
+        </div>
+        <div class="student-name">
+            <label for="stu-name"><h2>Student Name </h2></label>
+            {{ form.as_p }}
+        </div>
+        <div class="instructions">
+            <ol type="i">
+                <li>
+                    <h3>
+                        The test will contains ten questions.
+                    </h3>
+                </li>
+                <li>
+                    <h3>
+                        Each question has four possibel options.
+                    </h3>
+                </li>
+                <li>
+                    <h3>
+                        click on the correct option.
+                    </h3>
+                    
+                </li>
+                <li>
+                    <h3>
+                        Each question carries one mark.
+                    </h3>
+                </li>
+            </ol>
+        </div>
+        <div class="button-field">
+            <div class="next-button">
+                <input type="submit" value="Start test">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="{% static 'js/startQuiz.js'%}"></script>
+
+{% endblock%}

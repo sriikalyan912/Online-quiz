@@ -34,9 +34,19 @@
     border-radius: 3px;
 
     color: white;
+
+    font-size: larger;
+    letter-spacing: 1px;
 }
 
 #ul-buttons button:hover{
     background-color: rgb(104, 26, 177);
 }
 
+@media screen and (max-width: 800px){
+    
+    #ul-buttons{
+        flex-direction: column;
+    }    
+
+}
