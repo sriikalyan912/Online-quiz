@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'g36^!1gt4a)66dpaume^)=%%t1v7kcq(=99nhmqyv-#ai4b2^m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['schoolquiz912.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
