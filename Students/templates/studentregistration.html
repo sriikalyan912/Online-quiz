@@ -1,0 +1,32 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/logreg.css'%}">
+{% endblock %}
+
+{% block content %}
+    <div class="deatils-box">
+        <div class="info">
+            <h2>
+                Student Registration
+            </h2>
+        </div>
+        
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for i in Student %}
+            <p>{{i.label}} {{i}}</p>
+            {% endfor %}
+
+            <input type="submit" value="Create Student">
+
+        </form>
+        <div>
+            Old student ? <a href="/studentlogin">Register here</a>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablestyle.css' %}">
+{% endblock %}
+
+{% block nav %}
+    {% include 'nav.html'%}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+    <div class="create-quiz">
+        <a href="/createquiz">
+            <h2>
+                Create a New Quiz
+            </h2>
+        </a>
+    </div>
+    
+
+    <div class="table-container">
+
+        <table>
+            <tr>
+                <th>Quiz ID</th>
+                <th>Quiz name</th>
+                <th>Quiz Creator</th>
+                <th>Date Of Creation</th>
+                <th>DueDate</th>
+            </tr>
+            
+
+        {% for quiz in quizzes %}
+            <tr>
+                <td>
+                    {{ quiz.QuizId }}
+                </td>
+                <td>
+                    <a href="{{ quiz.QuizId }}/">
+                        {{ quiz.QuizName }}
+                    </a>
+                </td>
+                <td>
+                    {{ quiz.QuizCreator }}
+                </td>
+                <td>
+                    {{ quiz.DateOfCreation }}
+                </td>
+                <td>
+                    {{ quiz.DueDate }}
+                </td>
+            </tr>
+        {% endfor %}
+
+        </table>
+
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'home.html' %}
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/boxstyle.css'%}">
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="login-box">
+    <div class="logger">
+        <h1 id="logger-h1">
+            Staff Login
+        </h1>
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        <div class="user-detail">
+            <div class="label">
+                <label for="username">Username:</label>
+            </div>
+            <div class="input">
+                <input type="text" name="username" id="username" class="input-text">
+            </div>
+        </div>
+        
+        <div class="user-detail">
+            <div class="label">
+                <label for="password">Password:</label>
+            </div>
+            <div class="input">
+                <input type="password" name="password" id="password" class="input-text">
+            </div>
+        </div>
+        <div class="submit">
+            <input type="submit" value="Login" id="submit-button">
+        </div>
+        <div>
+            <p>don't have a accont ? <a href="/staffregister">Sign Up</a></p>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

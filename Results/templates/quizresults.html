@@ -1,0 +1,57 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablestyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/quizresults.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="main-content">
+
+    <h1>
+        <label for="">Quiz Name: {{quiz}}</label>
+    </h1>
+    <div class="table-container">
+
+        <table style="border: 1px solid black;">
+            <tr>
+                <th>
+                    Student Name
+                </th>
+                <th>
+                    Time taken to Finish
+                </th>
+                <th>
+                    Test Taken Date
+                </th>
+                <th>
+                    Score
+                </th>
+            </tr>
+
+            {% for result in results %}
+                <tr>
+                    <td>
+                        {{ result.Student }}
+                    </td>
+                    <td>
+                        {{ result.TimeTakenToFinish }}
+                    </td>
+                    <td>
+                        {{ result.TestTakenDate }}
+                    </td>
+                    <td>
+                        {{ result.Score }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+    <h3>
+        back to <a href="/availablequizzes">available quizzes</a>
+    </h3>
+</div>
+{% endblock %}

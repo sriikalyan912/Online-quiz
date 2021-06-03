@@ -1,0 +1,58 @@
+{% extends 'home.html' %}
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/boxstyle.css'%}">
+{% endblock %}
+
+{% block content %}
+
+<div class="login-box register-box">
+    <div class="logger">
+        <h1 id="logger-h1">
+            Staff Register
+        </h1>
+    </div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="user-detail">
+            <div class="label">
+                <label for="username">{{Staff.username.label}}</label>
+            </div>
+            <div class="input">
+                {{Staff.username}}
+            </div>
+        </div>
+        <div class="user-detail">
+            <div class="label">
+                <label for="username">{{Staff.email.label}}</label>
+            </div>
+            <div class="input">
+                {{Staff.email}}
+            </div>
+        </div>
+        <div class="user-detail">
+            <div class="label">
+                <label for="username">{{Staff.password1.label}}</label>
+            </div>
+            <div class="input">
+                {{Staff.password1}}
+            </div>
+        </div>
+        <div class="user-detail">
+            <div class="label">
+                <label for="username">{{Staff.password2.label}}</label>
+            </div>
+            <div class="input">
+                {{Staff.password2}}
+            </div>
+        </div>
+        
+        <input type="submit" value="Create Account" id="submit-button">
+        <div>
+            <p>do you have an account ? <a href="/stafflogin">Sign In</a></p>
+        </div>
+    </form>
+</div>
+{% endblock %}

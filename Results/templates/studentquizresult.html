@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/quizresults.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="result-box">
+    <h2>
+        Quiz Reslt
+    </h2>
+    <h3>
+        Quiz: {{ result.Quiz}}
+    </h3>
+    <h3>
+        Student: {{ result.Student.StudentName }}
+    </h3>
+    <h3>
+        TimeTaken: {{ result.TimeTakenToFinish }}
+    </h3>
+    <h3>
+        Score: {{ result.Score }}
+    </h3>
+    <div>
+        <a href="/home">Exit</a>
+    </div>
+</div>
+
+{% endblock %}

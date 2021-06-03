@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablestyle.css' %}">
+{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>Quiz id</th>
+        <th>Quiz name</th>
+        <th>Quiz Creator</th>
+        <th>Date Of Creation</th>
+        <th>DueDate</th>
+        <th>link</th>
+    </tr>
+    
+
+{% for quiz in quizzes %}
+    <tr>
+        <td>
+            {{ quiz.QuizId }}
+        </td>
+        <td>
+            
+            {{ quiz.QuizName }}
+        </td>
+        <td>
+            {{ quiz.QuizCreator }}
+        </td>
+        <td>
+            {{ quiz.DateOfCreation }}
+        </td>
+        <td>
+            {{ quiz.DueDate }}
+        </td>
+        <td>
+            <a href="{{ quiz.QuizId }}/{{ quiz.QuizName }}">Take Quiz</a>
+        </td>
+    </tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

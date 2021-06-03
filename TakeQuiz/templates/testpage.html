@@ -1,0 +1,279 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'css/teststyle.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="question-body">
+
+    <div class="quiz-info">
+
+        <div class="quiz-wrapper">
+            <h3>
+                QuizName : {{ quiz }} <br>
+            </h3>
+            <h3>
+                Student Roll No. : {{ studentroll }}
+            </h3>
+        </div>
+        <div class="clock-wrapper">
+            <div class="stopwatch" id="stopwatch"></div>
+        </div>
+    
+    </div>
+
+
+    {% csrf_token %}
+
+    <div id="content">
+        <div>
+            <h3 id="question"></h3>
+        </div>
+        <div>
+            <ol type="A" id="options">
+                <li>
+                    <input type="checkbox" name="option" onchange="is_correct('A')" value="A" id="optionA">
+                    <h4 id="optionA-value"></h4>
+                </li>
+                <li>
+                    <input type="checkbox" name="option" onchange="is_correct('B')" value="B" id="optionB">
+                    <h4 id="optionB-value"></h4>
+                </li>
+                <li>
+                    <input type="checkbox" name="option" onchange="is_correct('C')" value="C" id="optionC">
+                    <h4 id="optionC-value"></h4>
+                </li>
+                <li>
+                    <input type="checkbox" name="option" onchange="is_correct('D')" value="D" id="optionD">
+                    <h4 id="optionD-value"></h4>
+                </li>
+            </ol>
+        </div>
+        <button onclick="answerValidation()" id="next-question">Next Question</button>
+    </div>
+
+</div>
+
+<script>
+    var question_no = 0;
+    let max_question = 10;
+    var response;
+    let score = 0;
+    let stopwatch;
+
+    result = 0
+
+    window.onload = ()=>{
+        stop = new Stopwatch(document.getElementById('stopwatch'),result)
+        stop.start()
+        nextquestion()
+    }
+
+    function starttimer(){
+        
+    }
+
+    function WhenOptionChecked(){
+        if(AllCorrectAnswersChecked){
+            document.getElementById('next-question').setAttribute('onclick', "nextquestion()");
+        }
+    }
+
+    function answerValidation(){
+        if(!AllCorrectAnswersChecked()){
+            ShowCorrectAnswers();
+            document.getElementById('next-question').setAttribute('onclick', "nextquestion()");
+        }
+        else{
+            score = score+1;
+            nextquestion()
+        }
+    }
+
+    function nextquestion(){
+
+        clean();
+        
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if(question_no < max_question){
+
+                    question_no = question_no + 1;
+
+                    response = JSON.parse(this.responseText);
+                    
+                    document.getElementById('question').innerHTML = response.question;
+                    document.getElementById('optionA-value').innerHTML = response.options[0];
+                    document.getElementById('optionB-value').innerHTML = response.options[1];
+                    document.getElementById('optionC-value').innerHTML = response.options[2];
+                    document.getElementById('optionD-value').innerHTML = response.options[3];
+                }
+                else{
+                    window.location = JSON.parse(this.responseText).location;
+                }
+            }
+        };
+        if(question_no < max_question){
+            xhttp.open("GET", `${question_no}/`, true);
+            xhttp.send();
+        }
+        else{
+            
+            stop.stop()
+
+            timetaken = document.getElementById('stopwatch').innerHTML;
+
+            xhttp.open("POST", `${question_no}/`, true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send(`csrfmiddlewaretoken=${document.getElementsByName('csrfmiddlewaretoken')[0].value}&score=${score}&timetaken=${timetaken}`);
+        }
+    }
+
+    function is_correct(option){
+        if(response.Answers[option]){
+            document.getElementById(`option${option}-value`).style.backgroundColor = 'Green';
+            return;
+        }
+        else{
+            document.getElementById(`option${option}-value`).style.backgroundColor = 'Red';
+            document.getElementById('options').style.pointerEvents = 'none';
+
+            ShowCorrectAnswers();
+            document.getElementById('next-question').setAttribute('onclick', "nextquestion()");
+        }
+
+    }
+    
+
+    function ShowCorrectAnswers(){
+        ['A', 'B', 'C', 'D'].forEach((item)=>{
+            if(response.Answers[item]){
+                document.getElementById(`option${item}-value`).style.backgroundColor = 'Green';
+            }
+        
+        });
+    }
+
+    function AllCorrectAnswersChecked(){
+        var flag = true;
+        ['A', 'B', 'C', 'D'].forEach((item)=>{
+            if(response.Answers[item]){
+                if(!document.getElementById(`option${item}`).checked){
+                    flag = false;
+                    return;
+                }
+            }
+        });
+        return flag;
+    }
+
+    function clean(){
+
+        document.getElementsByName('option').forEach((item)=>{
+            item.checked = false;
+        });
+
+        ['A', 'B', 'C', 'D'].forEach((item)=>{
+                    document.getElementById(`option${item}-value`).style.backgroundColor = 'white';
+            });
+        
+        document.getElementById('options').style.pointerEvents = 'auto';
+        document.getElementById('next-question').setAttribute('onclick', "answerValidation()");
+    }
+
+// Clock code
+
+class Stopwatch {
+    constructor(display, results) {
+        this.running = false;
+        this.display = display;
+        this.results = results;
+        this.laps = [];
+        this.reset();
+        this.print(this.times);
+    }
+    
+    reset() {
+        this.times = [ 0, 0, 0 ];
+    }
+    
+    start() {
+        if (!this.time) this.time = performance.now();
+        if (!this.running) {
+            this.running = true;
+            requestAnimationFrame(this.step.bind(this));
+        }
+    }
+    
+    
+    stop() {
+        this.running = false;
+        this.time = null;
+    }
+
+    restart() {
+        if (!this.time) this.time = performance.now();
+        if (!this.running) {
+            this.running = true;
+            requestAnimationFrame(this.step.bind(this));
+        }
+        this.reset();
+    }
+    
+    clear() {
+        clearChildren(this.results);
+    }
+    
+    step(timestamp) {
+        if (!this.running) return;
+        this.calculate(timestamp);
+        this.time = timestamp;
+        this.print();
+        requestAnimationFrame(this.step.bind(this));
+    }
+    
+    calculate(timestamp) {
+        var diff = timestamp - this.time;
+        // Hundredths of a second are 100 ms
+        this.times[2] += diff / 10;
+        // Seconds are 100 hundredths of a second
+        if (this.times[2] >= 100) {
+            this.times[1] += 1;
+            this.times[2] -= 100;
+        }
+        // Minutes are 60 seconds
+        if (this.times[1] >= 60) {
+            this.times[0] += 1;
+            this.times[1] -= 60;
+        }
+    }
+    
+    print() {
+        this.display.innerText = this.format(this.times);
+    }
+    
+    format(times) {
+        return `${pad0(times[0], 2)}:${pad0(times[1], 2)}:${pad0(Math.floor(times[2]), 2)}`;
+    }
+}
+
+function pad0(value, count) {
+    var result = value.toString();
+    for (; result.length < count; --count)
+        result = '0' + result;
+    return result;
+}
+
+function clearChildren(node) {
+    while (node.lastChild)
+        node.removeChild(node.lastChild);
+}
+
+
+</script>
+
+{% endblock %}

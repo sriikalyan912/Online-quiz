@@ -1,0 +1,22 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/quizcreated.css' %}">
+    
+{% endblock %}
+
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+
+    <div class="box">
+        <h1>Quiz Created</h1>
+        <a href="/availablequizzes">back to main page</a>
+    </div>
+
+</div>
+{% endblock %}

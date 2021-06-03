@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>online quiz</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    
+    {% block style %}
+    
+        <link rel="stylesheet" href="{% static 'css/logintype.css' %}">
+    
+    {% endblock %}
+
+<body>
+
+    {% block nav %}
+        <nav>
+            <h2>
+                "School Name's" Online Quiz
+            </h2>
+            <h3>
+                <a href="/">Home</a>
+            </h3>
+        </nav>
+    {% endblock %}
+ 
+    <div class="container">
+        
+
+        <div class="main-content">
+            {%block content%}
+        
+                <div class="wrapper">
+                    <div class="logintype-box">
+                        <h3>
+                        <a href="/stafflogin" class="logintype">Staff Login</a>
+                        </h3>
+                    </div>
+                    <div class="logintype-box">
+                        <h3>
+                            <a href="/studentlogin" class="logintype">Student Login</a>
+                        </h3>
+                    </div>
+                </div>
+                {%endblock%}
+        </div>
+
+        
+    </div>
+</body>
+</html>

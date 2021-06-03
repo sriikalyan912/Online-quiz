@@ -1,0 +1,70 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/logreg.css'%}">
+{% endblock %}
+
+{% block content %}
+    <div class="deatils-box">
+        <div class="info">
+            <h2>
+                Student login
+            </h2>
+        </div>
+        <form action="" method="post" id="studentlogin">
+            {% csrf_token %}
+            {% for i in Student %}
+            <p>{{i.label}} {{i}}</p>
+            {% endfor %}
+            
+            <button onclick="login()">Login</button>
+            <p id="error-info">
+    
+            </p>
+        </form>
+        <div>
+            New student ? <a href="/studentregistration">Register here</a>
+        </div>
+    </div>
+{% endblock %}
+
+
+<script>
+    function login(){
+        var xhttp = new XMLHttpRequest();
+        
+        var formData = document.getElementById('studentlogin')
+        
+        var data = ''
+        
+        for(var i=0; i<formData.length-1; i++){
+            if(i != formData.length-2){
+                data = data + `${formData.elements[i].name}=${formData.elements[i].value}&`
+            }
+            else{
+                data = data + `${formData.elements[i].name}=${formData.elements[i].value}`
+            }
+            
+        }
+        
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                
+                response = JSON.parse(this.responseText)
+                if(response.loginstatus == 0){
+                    document.getElementById('error-info').innerHTML = JSON.parse(this.responseText).loginfailed
+                }
+                else{
+                    roll = document.getElementById('id_StudentRollNo').value
+                    window.location = `quizzesonline/${roll}/`
+                }
+            }
+        };
+        xhttp.open("POST", "", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhttp.send(data);
+    }
+</script>

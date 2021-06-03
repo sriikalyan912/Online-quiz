@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'css/quizstart.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="quiz-details">
+    <div>
+        <h3>
+            Quiz name: {{ quiz.QuizName }}
+        </h3>
+    </div>
+    <div>
+        <h3>
+            Quiz Creator: {{ quiz.QuizCreator }}
+        </h3>
+    </div>
+    <div>
+        <h3>
+            Quiz Created on: {{ quiz.DateOfCreation }}
+        </h3>
+    </div>
+    <div>
+        <h3>
+            Quiz Due date: {{ quiz.DueDate }}
+        </h3>
+    </div>
+    <div class="start-button">
+        <button id="start-quiz" onclick="startquiz()">
+            Start Quiz
+        </button>
+    </div>
+</div>
+
+
+
+<script>
+    startquiz = () => {
+        window.location = "question/"
+    };
+</script>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'home.html' %}
+
+{% block style%}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/quizdetails.css'%}">
+    
+{% endblock %}
+
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="quiz-details full-size">
+
+    <div class="fit-box">
+
+        <h3>
+            Enter Quiz Details
+        </h3>
+    
+        <form action="" method="post" class="quiz-details form-size">
+            {% csrf_token %}
+            <div class="box">
+                <label for="id_QuizName">Quiz Name</label>
+                <input type="text" name="QuizName" id="id_QuizName" required>
+            </div>
+            <div class="box">
+                <label for="id_QuizCreator">Quiz Creator</label>
+                <input type="text" name="QuizCreator" id="id_QuizCreator" required value={{ staff }} readonly>
+            </div>
+            <div class="box">
+                <label for="id_DueDate">DueDate</label>
+                <input type="text" name="DueDate" id="id_DueDate" placeholder = 'yyyy-mm-dd'required>
+        
+            </div>
+            <div class="box">
+                <input type="submit" value="Create quiz">
+            </div>
+        </form>
+    
+    </div>
+    
+</div>
+
+{% endblock %}
