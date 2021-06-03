@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-cr4f%chdj@!+lvm(i&r9h#4vbu^f2mm0+=9y5i8v8ptsk#6@!v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['onlinequiz912.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['onlinequiz912.herokuapp.com', '127.0.0.1', 'schoolquiz912.herokuapp.com']
 
 
 # Application definition
